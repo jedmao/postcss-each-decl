@@ -1,29 +1,27 @@
-﻿///<reference path="../typings/tsd.d.ts" />
-import { expect } from 'chai';
-import postcss from 'postcss';
-import eachDecl from '../lib/index';
+﻿var tape = require('tape');
+var postcss = require('postcss');
 
-// ReSharper disable WrongExpressionStatement
-describe('postcss-each-decl', () => {
+var eachDecl = require('..');
 
-	it('shallowly iterates over each declaration', () => {
-		const rule = postcss.parse(`
-			a {
-				foo: FOO;
-				bar: BAR;
-				b {
-					baz: BAZ;
-				}
-				qux: QUX;
+tape('it shallowly iterates over each declaration', function(t) {
+
+	var rule = postcss.parse(`
+		a {
+			foo: FOO;
+			bar: BAR;
+			b {
+				baz: BAZ;
 			}
-		`).first;
-		const expected = ['qux', 'bar', 'foo'];
-		eachDecl(<postcss.Container>rule, decl => {
-			const prop = expected.pop();
-			expect(decl.prop).to.eq(prop);
-			expect(decl.value).to.eq(prop.toUpperCase());
-		});
-		expect(expected).lengthOf(0);
+			qux: QUX;
+		}
+	`).first;
+	var expected = ['qux', 'bar', 'foo'];
+	eachDecl(rule, function(decl) {
+		var prop = expected.pop();
+		t.equal(decl.prop, prop);
+		t.equal(decl.value, prop.toUpperCase());
 	});
+	t.equal(expected.length, 0);
 
+	t.end();
 });

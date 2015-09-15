@@ -1,15 +1,11 @@
 {
   "name": "postcss-each-decl",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "PostCSS helper method to shallowly iterate over each declaration.",
-  "main": "dist/lib/index.js",
+  "main": "index.js",
   "scripts": {
-    "prepublish": "gulp && gulp copy && npm run babelify",
-    "babelify": "babel build/lib --out-dir dist/lib",
-    "test": "gulp && npm run cover && npm run check-coverage",
-    "cover": "isparta cover node_modules/mocha/bin/_mocha -i build/lib/index.js",
-    "check-coverage": "istanbul check-coverage",
-    "watch": "sh scripts/watch"
+    "test": "npm run tape",
+    "tape": "tape 'test/*.js'"
   },
   "repository": {
     "type": "git",
@@ -29,24 +25,10 @@
   },
   "homepage": "https://github.com/jedmao/postcss-each-decl#readme",
   "dependencies": {
-    "postcss": "^5.0.5"
+    "tcomb-postcss": "^1.0.0"
   },
   "devDependencies": {
-    "babel": "^5.8.23",
-    "babel-core": "^5.8.24",
-    "babel-eslint": "^4.1.2",
-    "chai": "^3.2.0",
-    "del": "^2.0.2",
-    "eslint": "^1.4.1",
-    "event-stream": "^3.3.1",
-    "gulp": "^3.9.0",
-    "gulp-eslint": "^1.0.0",
-    "gulp-filter": "^3.0.1",
-    "gulp-plumber": "^1.0.1",
-    "gulp-tslint": "^3.2.0",
-    "gulp-typescript": "^2.8.3",
-    "isparta": "^3.0.4",
-    "istanbul": "^0.3.20",
-    "mocha": "^2.3.2"
+    "postcss": "^5.0.5",
+    "tape": "^4.2.0"
   }
 }

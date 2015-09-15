@@ -49,47 +49,12 @@ $ npm install postcss-each-decl
 
 ## Usage
 
-### JavaScript
-
 ```js
-import postcss from 'postcss';
-import eachDecl from 'postcss-each-decl';
+var postcss = require('postcss');
+var eachDecl = require('postcss-each-decl');
 
-const rule = postcss.parse('a{foo:bar}').first;
-eachDecl(rule, decl => {
+var rule = postcss.parse('a{foo:bar}').first;
+eachDecl(rule, function(decl) {
 	console.log(decl.prop, decl.value); // foo bar
 });
 ```
-
-### TypeScript
-
-```ts
-///<reference path="node_modules/postcss-each-decl/.d.ts" />
-import postcss from 'postcss';
-import eachDecl from 'postcss-each-decl';
-
-const rule = postcss.parse('a{foo:bar}').first;
-eachDecl(<postcss.Container>rule, decl => {
-	console.log(decl.prop, decl.value); // foo bar
-});
-```
-
-## Testing
-
-Run the following command:
-
-```
-$ npm test
-```
-
-This will build scripts, run tests and generate a code coverage report. Anything less than 100% coverage will throw an error.
-
-### Watching
-
-For much faster development cycles, run the following command:
-
-```
-$ npm run watch
-```
-
-This will build scripts, run tests and watch for changes.
