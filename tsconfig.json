@@ -1,0 +1,14 @@
+﻿{
+	"compilerOptions": {
+		"target": "es6",
+		"declaration": true,
+		"newLine": "LF",
+		"outDir": "build",
+		"rootDir": "."
+	},
+	"files": [
+		"lib/index.ts",
+		"test/index.ts",
+		"node_modules/postcss/d.ts/postcss.d.ts"
+	]
+}
