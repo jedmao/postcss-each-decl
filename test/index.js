@@ -1,20 +1,21 @@
-﻿var tape = require('tape');
+﻿var EOL = require('os').EOL;
+var tape = require('tape');
 var postcss = require('postcss');
 
 var eachDecl = require('..');
 
 tape('it shallowly iterates over each declaration', function(t) {
 
-	var rule = postcss.parse(`
-		a {
-			foo: FOO;
-			bar: BAR;
-			b {
-				baz: BAZ;
-			}
-			qux: QUX;
-		}
-	`).first;
+	var rule = postcss.parse([
+		'a {',
+		'  foo: FOO;',
+		'  bar: BAR;',
+		'  b {',
+		'    baz: BAZ;',
+		'  }',
+		'  qux: QUX;',
+		'}',
+	].join(EOL)).first;
 	var expected = ['qux', 'bar', 'foo'];
 	eachDecl(rule, function(decl) {
 		var prop = expected.pop();
