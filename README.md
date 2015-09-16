@@ -18,15 +18,16 @@
 Ever since PostCSS 5.0, a [container](https://github.com/postcss/postcss/blob/master/docs/api.md#containers-common-methods) method called [`walkDecls`](https://github.com/postcss/postcss/blob/master/docs/api.md#containerwalkdeclspropfilter-callback) traverses the container's descendant nodes, calling a callback function for each declaration node found. Conversely, this project exposes a simple function that shallowly iterates over a container's direct child nodes, using no recursion.
 
 ```js
-const rule = postcss.parse(`
-	a {
-		foo: FOO;
-		bar: BAR;
-		b {
-			baz: BAZ;
-		}
-		qux: QUX;
-`).first;
+var rule = postcss.parse([
+	'a {',
+	'  foo: FOO;',
+	'  bar: BAR;',
+	'  b {',
+	'    baz: BAZ',
+	'  }',
+	'  qux: QUX;',
+	'}'
+].join('')).first;
 
 eachDecl(rule, decl => {
 	console.log(decl.prop, decl.value);
